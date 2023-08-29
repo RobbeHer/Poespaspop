@@ -1,4 +1,6 @@
 <script setup>
+    import { ref } from 'vue'
+
     const data = [
         {
             date: "Thu 17 August '23",
@@ -84,15 +86,55 @@
             ]
         }
     ]
+
+    const media = [
+        ...data[0].images,
+        ...data[1].images,
+        ...data[2].images,
+        ...data[3].images
+    ]
+
+    const selectedMedia = ref('')
+    
+    function openDisplay(selectedMedia) {
+        this.selectedMedia = selectedMedia
+    }
+
+    function displayPrevious() {
+        let index = media.indexOf(selectedMedia.value)
+        if (--index < 0) index = media.length - 1
+        selectedMedia.value = media[index]
+    }
+
+    function displayNext() {
+        let index = media.indexOf(selectedMedia.value)
+        if (++index === media.length) index = 0
+        selectedMedia.value = media[index]
+    }
+
+    function closeDisplay() {
+        selectedMedia.value = ''
+    }
 </script>
 
 <template>
     <h1>Poespaspop 2023</h1>
+    
+    <template v-if="selectedMedia">
+        <img v-if="selectedMedia.split('.')[1] === 'jpg'" height="200" :src="'/src/assets/' + selectedMedia">
+        <video v-if="selectedMedia.split('.')[1] === 'mp4'" height="200" :src="'/src/assets/' + selectedMedia" controls autoplay></video>
+        <div>
+            <button @click="displayPrevious">prev</button>
+            <button @click="displayNext">next</button>
+            <button @click="closeDisplay">close</button>
+        </div>
+    </template> 
+
     <div v-for="day in data" :key="day.date">
         <h2>{{ day.date }}</h2>
         <template v-for="imageName in day.images" :key="imageName">
-            <img v-if="imageName.split('.')[1] === 'jpg'" :src="'/src/assets/small/' + imageName">
-            <img v-if="imageName.split('.')[1] === 'mp4'" :src="'/src/assets/small/vidcapture/VideoCapture_' + imageName.split('.')[0] + '.jpg'">
+            <img v-if="imageName.split('.')[1] === 'jpg'" @click="openDisplay(imageName)" :src="'/src/assets/small/' + imageName" :title="imageName">
+            <img v-if="imageName.split('.')[1] === 'mp4'" @click="openDisplay(imageName)" :src="'/src/assets/small/vidcapture/VideoCapture_' + imageName.split('.')[0] + '.jpg'" :title="imageName">
         </template>
     </div>
 </template>
