@@ -4,7 +4,7 @@
     const data = [
         {
             date: "Thu 17 August '23",
-            images: [
+            media: [
                 "20230817_103514.jpg",
                 "20230817_104704.jpg",
                 "20230817_105857.jpg",
@@ -28,7 +28,7 @@
         },
         {
             date: "Fri 18 August '23",
-            images: [
+            media: [
                 "20230818_002506.jpg",
                 "20230818_012518.mp4",
                 "20230818_012950.mp4",
@@ -48,7 +48,7 @@
         },
         {
             date: "Sat 19 August '23",
-            images: [
+            media: [
                 "20230819_002119.mp4",
                 "20230819_010200.jpg",
                 "20230819_030836.mp4",
@@ -70,7 +70,7 @@
         },
         {
             date: "Sun 20 August '23",
-            images: [
+            media: [
                 "20230820_015222.mp4",
                 "20230820_021409.jpg",
                 "20230820_122100.jpg",
@@ -87,33 +87,33 @@
         }
     ]
 
-    const media = [
-        ...data[0].images,
-        ...data[1].images,
-        ...data[2].images,
-        ...data[3].images
+    const allMedia = [
+        ...data[0].media,
+        ...data[1].media,
+        ...data[2].media,
+        ...data[3].media
     ]
 
-    const selectedMedia = ref('')
+    const selectedMedia = ref(null)
     
-    function openDisplay(selectedMedia) {
-        this.selectedMedia = selectedMedia
+    function openDisplay(mediaFile) {
+        selectedMedia.value = mediaFile
     }
 
     function displayPrevious() {
-        let index = media.indexOf(selectedMedia.value)
-        if (--index < 0) index = media.length - 1
-        selectedMedia.value = media[index]
+        let index = allMedia.indexOf(selectedMedia.value)
+        if (--index < 0) index = allMedia.length - 1
+        selectedMedia.value = allMedia[index]
     }
 
     function displayNext() {
-        let index = media.indexOf(selectedMedia.value)
-        if (++index === media.length) index = 0
-        selectedMedia.value = media[index]
+        let index = allMedia.indexOf(selectedMedia.value)
+        if (++index === allMedia.length) index = 0
+        selectedMedia.value = allMedia[index]
     }
 
     function closeDisplay() {
-        selectedMedia.value = ''
+        selectedMedia.value = null
     }
 </script>
 
@@ -132,9 +132,9 @@
 
     <div v-for="day in data" :key="day.date">
         <h2>{{ day.date }}</h2>
-        <template v-for="imageName in day.images" :key="imageName">
-            <img v-if="imageName.split('.')[1] === 'jpg'" @click="openDisplay(imageName)" :src="'/src/assets/small/' + imageName" :title="imageName">
-            <img v-if="imageName.split('.')[1] === 'mp4'" @click="openDisplay(imageName)" :src="'/src/assets/small/vidcapture/VideoCapture_' + imageName.split('.')[0] + '.jpg'" :title="imageName">
+        <template v-for="mediaFile in day.media" :key="mediaFile">
+            <img v-if="mediaFile.split('.')[1] === 'jpg'" @click="openDisplay(mediaFile)" :src="'/src/assets/small/' + mediaFile" :title="mediaFile">
+            <img v-if="mediaFile.split('.')[1] === 'mp4'" @click="openDisplay(mediaFile)" :src="'/src/assets/small/vidcapture/VideoCapture_' + mediaFile.split('.')[0] + '.jpg'" :title="mediaFile">
         </template>
     </div>
 </template>
