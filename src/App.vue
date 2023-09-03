@@ -126,7 +126,9 @@
 </script>
 
 <template>
-    <h1>Poespaspop 2023</h1>
+    <h1 class="text-2xl">Poespaspop 2023</h1>
+    <h2 class="text-xl">Poespaspop 2023</h2>
+    <p>Poespaspop 2023</p>
     
     <template v-if="selectedMedia">
         <img v-if="fileFormat(selectedMedia) === 'jpg'" height="200" :src="'/src/assets/720p/' + fileName(selectedMedia) + '_720p.jpg'">
