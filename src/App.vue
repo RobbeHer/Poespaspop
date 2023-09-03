@@ -115,14 +115,22 @@
     function closeDisplay() {
         selectedMedia.value = null
     }
+
+    function fileName(mediaFile) {
+        return mediaFile.split('.')[0]
+    }
+
+    function fileFormat(mediaFile) {
+        return mediaFile.split('.')[1]
+    }
 </script>
 
 <template>
     <h1>Poespaspop 2023</h1>
     
     <template v-if="selectedMedia">
-        <img v-if="selectedMedia.split('.')[1] === 'jpg'" height="200" :src="'/src/assets/' + selectedMedia">
-        <video v-if="selectedMedia.split('.')[1] === 'mp4'" height="200" :src="'/src/assets/' + selectedMedia" controls autoplay></video>
+        <img v-if="fileFormat(selectedMedia) === 'jpg'" height="200" :src="'/src/assets/720p/' + fileName(selectedMedia) + '_720p.jpg'">
+        <video v-if="fileFormat(selectedMedia) === 'mp4'" height="200" :src="'/src/assets/720p/' + fileName(selectedMedia) + '_720p.mp4'" controls autoplay></video>
         <div>
             <button @click="displayPrevious">prev</button>
             <button @click="displayNext">next</button>
@@ -133,8 +141,8 @@
     <div v-for="day in data" :key="day.date">
         <h2>{{ day.date }}</h2>
         <template v-for="mediaFile in day.media" :key="mediaFile">
-            <img v-if="mediaFile.split('.')[1] === 'jpg'" @click="openDisplay(mediaFile)" :src="'/src/assets/small/' + mediaFile" :title="mediaFile">
-            <img v-if="mediaFile.split('.')[1] === 'mp4'" @click="openDisplay(mediaFile)" :src="'/src/assets/small/vidcapture/VideoCapture_' + mediaFile.split('.')[0] + '.jpg'" :title="mediaFile">
+            <img v-if="fileFormat(mediaFile) === 'jpg'" @click="openDisplay(mediaFile)" :src="'/src/assets/preview/' + fileName(mediaFile) + '_preview.jpg'" :title="mediaFile">
+            <img v-if="fileFormat(mediaFile) === 'mp4'" @click="openDisplay(mediaFile)" :src="'/src/assets/preview/video/' + fileName(mediaFile) + '_preview.jpg'" :title="mediaFile">
         </template>
     </div>
 </template>
