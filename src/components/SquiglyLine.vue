@@ -2,7 +2,7 @@
   <svg
     viewBox="0 0 687 100"
     xmlns="http://www.w3.org/2000/svg"
-    class="relative inline h-20 translate-x-0 translate-y-4 fill-c_green stroke-black stroke-1"
+    class="relative inline h-20 translate-y-4 fill-c_green stroke-black stroke-1"
   >
     <g class="absolute inset-0">
       <ellipse cx="601.46" cy="29" rx="85.85" ry="28.5"></ellipse>

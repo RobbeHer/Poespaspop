@@ -153,15 +153,15 @@ let loop = 0
 function getTileHeight(tile) {
   let row = Math.floor((tile - 1) / tileColumns.value) + 1
 
-  if ([1, 17].includes(row)) return 'h-2'
-  if ([2, 16].includes(row)) return 'h-3'
-  if ([3, 15].includes(row)) return 'h-4'
-  if ([4, 14].includes(row)) return 'h-5'
-  if ([5, 13].includes(row)) return 'h-6'
-  if ([6, 12].includes(row)) return 'h-7'
-  if ([7, 11].includes(row)) return 'h-10'
-  if ([8, 10].includes(row)) return 'h-12'
-  return 'h-16'
+  if ([1, 17].includes(row)) return (window.innerWidth >= 768) ? 'h-3' : 'h-2'
+  if ([2, 16].includes(row)) return (window.innerWidth >= 768) ? 'h-4' : 'h-3'
+  if ([3, 15].includes(row)) return (window.innerWidth >= 768) ? 'h-5' : 'h-4'
+  if ([4, 14].includes(row)) return (window.innerWidth >= 768) ? 'h-6' : 'h-5'
+  if ([5, 13].includes(row)) return (window.innerWidth >= 768) ? 'h-7' : 'h-6'
+  if ([6, 12].includes(row)) return (window.innerWidth >= 768) ? 'h-10' : 'h-7'
+  if ([7, 11].includes(row)) return (window.innerWidth >= 768) ? 'h-12' : 'h-10'
+  if ([8, 10].includes(row)) return (window.innerWidth >= 768) ? 'h-16' : 'h-12'
+  return (window.innerWidth >= 768) ? 'h-20' : 'h-16'
 }
 
 const tileColumns = ref(9)
@@ -290,26 +290,41 @@ function updateTileColumns() {
     </span>
   </div>
 
-  <div class="grid gap-0"
-    :class="tileColumnsClassName">
+  <div class="grid gap-0 relative"
+    :class="tileColumnsClassName"
+    >
     <div v-for="tile in tileColumns * 17"
-        class="w-full text-red-500"
-        :class="{
-          'bg-c_yellow': isYellowTile(tile)},
-          getTileHeight(tile)"
-        ></div>
+      class="w-full text-red-500"
+      :class="{
+        'bg-c_yellow': isYellowTile(tile)},
+        getTileHeight(tile)"
+      ></div>
+
+    <div class="absolute h-4/5 w-max-2/3 md:w-1/2 lg:w-1/3 self-center justify-self-center">
+      <iframe style="border-radius:12px; background-color: green;" 
+        src="https://open.spotify.com/embed/playlist/5iw9zdxw5SayZxJOAA2dyz?utm_source=generator&theme=1" 
+        frameBorder="0" 
+        allowfullscreen="" 
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        loading="lazy"
+        class="w-full h-full"></iframe>
+    </div>
   </div>
 
-  <div
-      class="max-w-full overflow-hidden flex h-12 items-center bg-c_green"
-    >
-      <div class="marquee reverse">
-        <span class="whitespace-nowrap text-xl font-bold uppercase text-black md:text-2xl">
-          <SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine />
-        </span>
-        <span class="whitespace-nowrap text-xl font-bold uppercase text-black md:text-2xl">
-          <SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine />
-        </span>
-      </div>
+  <div class="max-w-full overflow-hidden flex h-12 items-center bg-c_green">
+    <div class="marquee reverse">
+      <span class="whitespace-nowrap text-xl font-bold uppercase text-black md:text-2xl">
+        <SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine />
+      </span>
+      <span class="whitespace-nowrap text-xl font-bold uppercase text-black md:text-2xl">
+        <SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine />
+      </span>
     </div>
+  </div>
+
+  <div class="px-10 py-5 md:px-20 md:py-10">
+    <h2 class="uppercase text-c_yellow mb-4">More info</h2>
+    <p class="mb-4">This site is a personal recap of events on <a href="https://www.pukkelpop.be" class="underline text-c_yellow hover:text-c_yellow/75 hover:no-underline">Pukkelpop 2023</a> and made just for recreational purpose.</p>
+    <p> All copyright content goes to <span class="uppercase font-medium text-c_yellow">&copy; 2023 Pukkelpop The Factory BV</span> and their associates.</p>
+  </div>
 </template>
