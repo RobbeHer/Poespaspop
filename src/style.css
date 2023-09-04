@@ -15,20 +15,8 @@ h2 {
   @apply text-xl font-medium md:text-2xl;
 }
 
-.marquee-wrapper {
-  max-width: 100%;
-  overflow: hidden;
-}
-
 .marquee {
-  white-space: nowrap;
-  overflow: hidden;
-  display: inline-block;
   animation: marquee 60s linear infinite;
-}
-
-.marquee p {
-  display: inline-block;
 }
 
 @keyframes marquee {

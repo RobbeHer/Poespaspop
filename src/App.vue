@@ -6,6 +6,7 @@ const data = [
   {
     name: "Thu",
     date: "17 August '23",
+    color: "bg-c_green",
     media: [
       "20230817_103514.jpg",
       "20230817_104704.jpg",
@@ -31,6 +32,7 @@ const data = [
   {
     name: "Fri",
     date: "18 August '23",
+    color: "bg-c_purple",
     media: [
       "20230818_002506.jpg",
       "20230818_012518.mp4",
@@ -52,6 +54,7 @@ const data = [
   {
     name: "Sat",
     date: "19 August '23",
+    color: "bg-c_orange",
     media: [
       "20230819_002119.mp4",
       "20230819_010200.jpg",
@@ -75,6 +78,7 @@ const data = [
   {
     name: "Sun",
     date: "20 August '23",
+    color: "bg-c_blue",
     media: [
       "20230820_015222.mp4",
       "20230820_021409.jpg",
@@ -151,27 +155,21 @@ function fileFormat(mediaFile) {
     ></video>
 
     <div
-      class="absolute bottom-4 left-0 flex h-12 -rotate-2 items-center bg-c_yellow md:bottom-8 md:h-14"
+      class="max-w-full overflow-hidden absolute -bottom-6 left-0 flex h-12 -rotate-1 items-center bg-c_yellow md:bottom-1 md:h-14"
     >
       <div class="marquee">
-        <span
-          class="whitespace-nowrap text-xl font-bold uppercase text-black md:text-2xl"
-        >
-          Our best moments <Mozaik /> Our best moments <Mozaik /> Our best
-          moments <Mozaik /> Our best moments <Mozaik />
+        <span class="whitespace-nowrap text-xl font-bold uppercase text-black md:text-2xl">
+          <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik />
         </span>
-        <span
-          class="whitespace-nowrap text-xl font-bold uppercase text-black md:text-2xl"
-        >
-          Our best moments <Mozaik /> Our best moments <Mozaik /> Our best
-          moments <Mozaik /> Our best moments <Mozaik />
+        <span class="whitespace-nowrap text-xl font-bold uppercase text-black md:text-2xl">
+          Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik />
         </span>
       </div>
     </div>
   </div>
 
-  <h1 class="sm-pb-12 sm-pt-16 flex justify-center pb-8 pt-12">
-    this was Poespaspop 2023!
+  <h1 class="py-8 md:py-10 pt-14 flex justify-center">
+    This was Poespaspop 2023!
   </h1>
 
   <template v-if="selectedMedia">
@@ -195,7 +193,8 @@ function fileFormat(mediaFile) {
   </template>
 
   <div
-    class="flex justify-center gap-6 bg-c_green py-8 font-bold text-black md:justify-start md:gap-12 md:py-10 md:pl-20"
+    class="flex justify-center gap-8 py-8 font-bold text-black md:justify-start md:gap-12 md:py-10 md:pl-20"
+    :class="selectedDay.color"
   >
     <button
       v-for="day in data"
@@ -208,7 +207,7 @@ function fileFormat(mediaFile) {
     </button>
   </div>
 
-  <div class="grid grid-flow-row gap-0 sm:grid-cols-2 lg:grid-cols-3">
+  <div class="grid grid-flow-row gap-0 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
     <template v-for="mediaFile in selectedDay.media" :key="mediaFile">
       <img
         v-if="fileFormat(mediaFile) === 'jpg'"
@@ -224,7 +223,7 @@ function fileFormat(mediaFile) {
             '/src/assets/preview/video/' + fileName(mediaFile) + '_preview.jpg'
           "
           :title="mediaFile"
-          class="absolute w-full"
+          class="w-full"
         />
         <div class="absolute left-0 top-0 bg-c_purple p-1.5">
           <svg
