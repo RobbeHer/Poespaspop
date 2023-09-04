@@ -19,6 +19,11 @@ h2 {
   animation: marquee 60s linear infinite;
 }
 
+.reverse {
+  animation: marquee 60s linear infinite;
+  animation-direction: reverse;
+}
+
 @keyframes marquee {
   0% {
     transform: translate3d(0, 0, 0);

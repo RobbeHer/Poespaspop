@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from "vue"
 import Mozaik from "./components/Mozaik.vue"
+import Diamond from "./components/Diamond.vue"
+import SquiglyLine from "./components/SquiglyLine.vue"
 
 const data = [
   {
@@ -282,8 +284,10 @@ function updateTileColumns() {
     </template>
   </div>
 
-  <div>
-
+  <div class="max-w-full h-12 overflow-hidden flex items-center bg-c_blue">
+    <span class="-translate-x-28 whitespace-nowrap text-xl font-bold uppercase text-black md:text-2xl">
+      <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond />
+    </span>
   </div>
 
   <div class="grid gap-0"
@@ -296,7 +300,16 @@ function updateTileColumns() {
         ></div>
   </div>
 
-  <div>
-    
-  </div>
+  <div
+      class="max-w-full overflow-hidden flex h-12 items-center bg-c_green"
+    >
+      <div class="marquee reverse">
+        <span class="whitespace-nowrap text-xl font-bold uppercase text-black md:text-2xl">
+          <SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine />
+        </span>
+        <span class="whitespace-nowrap text-xl font-bold uppercase text-black md:text-2xl">
+          <SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine />
+        </span>
+      </div>
+    </div>
 </template>
