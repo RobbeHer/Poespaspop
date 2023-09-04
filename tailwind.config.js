@@ -11,7 +11,13 @@ export default {
         c_blue: "#4299f7",
         c_green: "#16e589",
       },
+      gridTemplateColumns: {
+        '13': 'repeat(13, minmax(0, 1fr))',
+        '15': 'repeat(15, minmax(0, 1fr))',
+        '17': 'repeat(17, minmax(0, 1fr))',
+        '19': 'repeat(19, minmax(0, 1fr))',
+      },
     },
   },
   plugins: [],
-};
+}

@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from "vue";
-import Mozaik from "./components/Mozaik.vue";
+import { ref } from "vue"
+import Mozaik from "./components/Mozaik.vue"
 
 const data = [
   {
@@ -94,52 +94,90 @@ const data = [
       "20230820_235924.mp4",
     ],
   },
-];
+]
 
 const allMedia = [
   ...data[0].media,
   ...data[1].media,
   ...data[2].media,
   ...data[3].media,
-];
+]
 
-const selectedMedia = ref(null);
-const selectedDay = ref(data[0]);
+const selectedMedia = ref(null)
+const selectedDay = ref(data[0])
 
 function setSelectedDay(day) {
-  selectedDay.value = day;
+  selectedDay.value = day
 }
 
 function isSelectedDay(day) {
-  return selectedDay.value.name === day.name;
+  return selectedDay.value.name === day.name
 }
 
 function openDisplay(mediaFile) {
-  selectedMedia.value = mediaFile;
+  selectedMedia.value = mediaFile
 }
 
 function displayPrevious() {
-  let index = allMedia.indexOf(selectedMedia.value);
-  if (--index < 0) index = allMedia.length - 1;
-  selectedMedia.value = allMedia[index];
+  let index = allMedia.indexOf(selectedMedia.value)
+  if (--index < 0) index = allMedia.length - 1
+  selectedMedia.value = allMedia[index]
 }
 
 function displayNext() {
-  let index = allMedia.indexOf(selectedMedia.value);
-  if (++index === allMedia.length) index = 0;
-  selectedMedia.value = allMedia[index];
+  let index = allMedia.indexOf(selectedMedia.value)
+  if (++index === allMedia.length) index = 0
+  selectedMedia.value = allMedia[index]
 }
 
 function closeDisplay() {
-  selectedMedia.value = null;
+  selectedMedia.value = null
 }
 
 function fileName(mediaFile) {
-  return mediaFile.split(".")[0];
+  return mediaFile.split(".")[0]
 }
 
 function fileFormat(mediaFile) {
-  return mediaFile.split(".")[1];
+  return mediaFile.split(".")[1]
+}
+
+function isYellowTile(tile) {
+  return tile % 2 === 1
+}
+
+let loop = 0
+
+function getTileHeight(tile) {
+  let row = Math.floor((tile - 1) / tileColumns.value) + 1
+
+  if ([1, 17].includes(row)) return 'h-2'
+  if ([2, 16].includes(row)) return 'h-3'
+  if ([3, 15].includes(row)) return 'h-4'
+  if ([4, 14].includes(row)) return 'h-5'
+  if ([5, 13].includes(row)) return 'h-6'
+  if ([6, 12].includes(row)) return 'h-7'
+  if ([7, 11].includes(row)) return 'h-10'
+  if ([8, 10].includes(row)) return 'h-12'
+  return 'h-16'
+}
+
+const tileColumns = ref(9)
+const tileColumnsClassName = ref('grid-cols-9')
+updateTileColumns()
+
+window.addEventListener("resize", () => {
+  updateTileColumns()
+})
+
+function updateTileColumns() {
+  tileColumns.value = 9
+  tileColumnsClassName.value = 'grid-cols-9'
+  if (window.innerWidth >= 640) tileColumns.value = 11, tileColumnsClassName.value = 'grid-cols-11'
+  if (window.innerWidth >= 768) tileColumns.value = 13, tileColumnsClassName.value = 'grid-cols-13'
+  if (window.innerWidth >= 1024) tileColumns.value = 15, tileColumnsClassName.value = 'grid-cols-15'
+  if (window.innerWidth >= 1280) tileColumns.value = 17, tileColumnsClassName.value = 'grid-cols-17'
+  if (window.innerWidth >= 1536) tileColumns.value = 19, tileColumnsClassName.value = 'grid-cols-19'
 }
 </script>
 
@@ -242,5 +280,23 @@ function fileFormat(mediaFile) {
         </div>
       </div>
     </template>
+  </div>
+
+  <div>
+
+  </div>
+
+  <div class="grid gap-0"
+    :class="tileColumnsClassName">
+    <div v-for="tile in tileColumns * 17"
+        class="w-full text-red-500"
+        :class="{
+          'bg-c_yellow': isYellowTile(tile)},
+          getTileHeight(tile)"
+        ></div>
+  </div>
+
+  <div>
+    
   </div>
 </template>
