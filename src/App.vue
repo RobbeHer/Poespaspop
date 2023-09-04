@@ -213,22 +213,31 @@ function updateTileColumns() {
   </h1>
 
   <template v-if="selectedMedia">
-    <img
-      v-if="fileFormat(selectedMedia) === 'jpg'"
-      height="200"
-      :src="'/src/assets/720p/' + fileName(selectedMedia) + '_720p.jpg'"
-    />
-    <video
-      v-if="fileFormat(selectedMedia) === 'mp4'"
-      height="200"
-      :src="'/src/assets/720p/' + fileName(selectedMedia) + '_720p.mp4'"
-      controls
-      autoplay
-    ></video>
-    <div>
-      <button @click="displayPrevious">prev</button>
-      <button @click="displayNext">next</button>
-      <button @click="closeDisplay">close</button>
+    <div class="sticky top-0 z-10 w-full h-screen flex justify-center items-center bg-black/75">
+      
+      <div class="absolute w-10/12 flex justify-between top-10 font-bold">
+        <a :href="'/src/assets/original/' + selectedMedia" download class="text-c_green">Download</a>
+        <button @click="closeDisplay">Close</button>
+      </div>
+      
+      <div class="w-10/12 max-h-fit">
+        <img
+          v-if="fileFormat(selectedMedia) === 'jpg'"
+          :src="'/src/assets/720p/' + fileName(selectedMedia) + '_720p.jpg'"
+          class="w-full max-h-screen object-contain"
+        />
+        <video
+          v-if="fileFormat(selectedMedia) === 'mp4'"
+          :src="'/src/assets/720p/' + fileName(selectedMedia) + '_720p.mp4'"
+          controls
+          autoplay
+          class="w-full max-h-screen object-contain"></video>
+      </div>
+
+      <div class="absolute w-10/12 flex justify-between bottom-10 font-bold">
+        <button @click="displayPrevious">Previous</button>
+        <button @click="displayNext">Next</button>
+      </div>
     </div>
   </template>
 
