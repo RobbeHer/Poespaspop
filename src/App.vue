@@ -184,9 +184,38 @@ function updateTileColumns() {
 </script>
 
 <template>
+  <template v-if="selectedMedia">
+    <div class="sticky top-0 z-10 w-full h-screen flex justify-center items-center bg-black/75">
+      
+      <div class="absolute w-10/12 flex justify-between top-10 font-bold">
+        <a :href="'/assets/original/' + selectedMedia" download class="text-c_green">Download</a>
+        <button @click="closeDisplay">Close</button>
+      </div>
+      
+      <div class="w-10/12 max-h-fit">
+        <img
+          v-if="fileFormat(selectedMedia) === 'jpg'"
+          :src="'/assets/720p/' + fileName(selectedMedia) + '_720p.jpg'"
+          class="w-full max-h-screen object-contain"
+        />
+        <video
+          v-if="fileFormat(selectedMedia) === 'mp4'"
+          :src="'/assets/720p/' + fileName(selectedMedia) + '_720p.mp4'"
+          controls
+          autoplay
+          class="w-full max-h-screen object-contain"></video>
+      </div>
+
+      <div class="absolute w-10/12 flex justify-between bottom-10 font-bold">
+        <button @click="displayPrevious">Previous</button>
+        <button @click="displayNext">Next</button>
+      </div>
+    </div>
+  </template>
+
   <div class="relative">
     <video
-      src="/src/assets/Pukkelpop-2023-Recap.mp4"
+      src="/assets/Pukkelpop-2023-Recap.mp4"
       autoplay
       muted
       loop
@@ -212,35 +241,6 @@ function updateTileColumns() {
     This was Poespaspop 2023!
   </h1>
 
-  <template v-if="selectedMedia">
-    <div class="sticky top-0 z-10 w-full h-screen flex justify-center items-center bg-black/75">
-      
-      <div class="absolute w-10/12 flex justify-between top-10 font-bold">
-        <a :href="'/src/assets/original/' + selectedMedia" download class="text-c_green">Download</a>
-        <button @click="closeDisplay">Close</button>
-      </div>
-      
-      <div class="w-10/12 max-h-fit">
-        <img
-          v-if="fileFormat(selectedMedia) === 'jpg'"
-          :src="'/src/assets/720p/' + fileName(selectedMedia) + '_720p.jpg'"
-          class="w-full max-h-screen object-contain"
-        />
-        <video
-          v-if="fileFormat(selectedMedia) === 'mp4'"
-          :src="'/src/assets/720p/' + fileName(selectedMedia) + '_720p.mp4'"
-          controls
-          autoplay
-          class="w-full max-h-screen object-contain"></video>
-      </div>
-
-      <div class="absolute w-10/12 flex justify-between bottom-10 font-bold">
-        <button @click="displayPrevious">Previous</button>
-        <button @click="displayNext">Next</button>
-      </div>
-    </div>
-  </template>
-
   <div
     class="flex justify-center gap-8 py-8 font-bold text-black md:justify-start md:gap-12 md:py-10 md:pl-20"
     :class="selectedDay.color"
@@ -261,7 +261,7 @@ function updateTileColumns() {
       <img
         v-if="fileFormat(mediaFile) === 'jpg'"
         @click="openDisplay(mediaFile)"
-        :src="'/src/assets/preview/' + fileName(mediaFile) + '_preview.jpg'"
+        :src="'/assets/preview/' + fileName(mediaFile) + '_preview.jpg'"
         :title="mediaFile"
         class="w-full"
       />
@@ -269,7 +269,7 @@ function updateTileColumns() {
         <img
           @click="openDisplay(mediaFile)"
           :src="
-            '/src/assets/preview/video/' + fileName(mediaFile) + '_preview.jpg'
+            '/assets/preview/video/' + fileName(mediaFile) + '_preview.jpg'
           "
           :title="mediaFile"
           class="w-full"
