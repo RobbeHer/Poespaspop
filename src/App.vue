@@ -124,12 +124,24 @@ function displayPrevious() {
   let index = allMedia.indexOf(selectedMedia.value)
   if (--index < 0) index = allMedia.length - 1
   selectedMedia.value = allMedia[index]
+
+  scrollToNextImage()
 }
 
 function displayNext() {
   let index = allMedia.indexOf(selectedMedia.value)
   if (++index === allMedia.length) index = 0
   selectedMedia.value = allMedia[index]
+
+  scrollToNextImage()
+}
+
+function scrollToNextImage() {
+  data.forEach((day) => {
+    if (day.media.includes(selectedMedia.value)) setSelectedDay(day)
+  })
+
+  setTimeout(() => document.getElementById(selectedMedia.value).scrollIntoView({block: 'center', behavior: "smooth"}), 200)
 }
 
 function closeDisplay() {
@@ -147,8 +159,6 @@ function fileFormat(mediaFile) {
 function isYellowTile(tile) {
   return tile % 2 === 1
 }
-
-let loop = 0
 
 function getTileHeight(tile) {
   let row = Math.floor((tile - 1) / tileColumns.value) + 1
@@ -184,8 +194,8 @@ function updateTileColumns() {
 </script>
 
 <template>
-  <template v-if="selectedMedia">
-    <div class="sticky top-0 z-10 w-full h-screen flex justify-center items-center bg-black/75">
+  <div v-if="selectedMedia" class="absolute z-20 h-full w-full bg-black/80 backdrop-blur-sm">
+    <div class="sticky top-0 h-screen flex justify-center items-center">
       
       <div class="absolute w-10/12 flex justify-between top-10 font-bold">
         <a :href="'/assets/original/' + selectedMedia" download class="text-c_green">Download</a>
@@ -210,8 +220,19 @@ function updateTileColumns() {
         <button @click="displayPrevious">Previous</button>
         <button @click="displayNext">Next</button>
       </div>
+
     </div>
-  </template>
+  </div>
+
+  <div class="lg:absolute z-10 w-full top-0 font-bold uppercase pl-5 py-2 lg:pl-10 lg:py-4 flex items-center">
+    <div class="flex gap-3 items-center origin-left scale-[.7] md:scale-[.8] lg:scale-100">
+      <h1 class="text-3xl lg:text-5xl lg:font-extrabold">Poespaspop</h1>
+      <div class="flex flex-col text-xs lg:text-sm leading-3">
+        <div class="w-fill flex justify-between"><span class="text-baselg:font-extrabold">Hasselt</span> <span class="font-light lg:font-medium">Kiewit</span> <span class="lg:font-extrabold">BE</span></div>
+        <div class="w-fill lg:font-extrabold">17<span class="font-light text-sm">|</span>18<span class="font-light text-sm">|</span>19<span class="font-light text-sm">|</span>20 <span class="font-light">aug</span> 2023</div>
+      </div>
+    </div>
+  </div>
 
   <div class="relative">
     <video
@@ -229,9 +250,7 @@ function updateTileColumns() {
       <div class="marquee">
         <span class="whitespace-nowrap text-xl font-bold uppercase text-black md:text-2xl">
           <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik />
-        </span>
-        <span class="whitespace-nowrap text-xl font-bold uppercase text-black md:text-2xl">
-          Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik />
+          <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik />
         </span>
       </div>
     </div>
@@ -264,6 +283,7 @@ function updateTileColumns() {
         :src="'/assets/preview/' + fileName(mediaFile) + '_preview.jpg'"
         :title="mediaFile"
         class="w-full"
+        :id="mediaFile"
       />
       <div v-if="fileFormat(mediaFile) === 'mp4'" class="relative">
         <img
@@ -273,6 +293,7 @@ function updateTileColumns() {
           "
           :title="mediaFile"
           class="w-full"
+          :id="mediaFile"
         />
         <div class="absolute left-0 top-0 bg-c_purple p-1.5">
           <svg
@@ -295,7 +316,7 @@ function updateTileColumns() {
 
   <div class="max-w-full h-12 overflow-hidden flex items-center bg-c_blue">
     <span class="-translate-x-28 whitespace-nowrap text-xl font-bold uppercase text-black md:text-2xl">
-      <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond />
+      <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond />
     </span>
   </div>
 
@@ -311,7 +332,7 @@ function updateTileColumns() {
 
     <div class="absolute h-4/5 w-max-2/3 md:w-1/2 lg:w-1/3 self-center justify-self-center">
       <iframe style="border-radius:12px; background-color: green;" 
-        src="https://open.spotify.com/embed/playlist/5iw9zdxw5SayZxJOAA2dyz?utm_source=generator&theme=1" 
+        src="https://open.spotify.com/embed/playlist/3XnjBgLSXsebO7utGQOPlt" 
         frameBorder="0" 
         allowfullscreen="" 
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
@@ -323,10 +344,8 @@ function updateTileColumns() {
   <div class="max-w-full overflow-hidden flex h-12 items-center bg-c_green">
     <div class="marquee reverse">
       <span class="whitespace-nowrap text-xl font-bold uppercase text-black md:text-2xl">
-        <SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine />
-      </span>
-      <span class="whitespace-nowrap text-xl font-bold uppercase text-black md:text-2xl">
-        <SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine />
+        <SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine />
+        <SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine />
       </span>
     </div>
   </div>
