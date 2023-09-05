@@ -194,6 +194,7 @@ function updateTileColumns() {
 </script>
 
 <template>
+  <!-- Display -->
   <div v-if="selectedMedia" class="absolute z-20 h-full w-full bg-black/80 backdrop-blur-sm">
     <div class="sticky top-0 h-screen flex justify-center items-center">
       
@@ -224,6 +225,7 @@ function updateTileColumns() {
     </div>
   </div>
 
+  <!-- Nav -->
   <div class="lg:absolute z-10 w-full top-0 font-bold uppercase pl-5 py-2 lg:pl-10 lg:py-4 flex items-center">
     <div class="flex gap-3 items-center origin-left scale-[.7] md:scale-[.8] lg:scale-100">
       <h1 class="text-3xl lg:text-5xl lg:font-extrabold">Poespaspop</h1>
@@ -234,6 +236,7 @@ function updateTileColumns() {
     </div>
   </div>
 
+  <!-- Header -->
   <div class="relative">
     <video
       src="/assets/Pukkelpop-2023-Recap.mp4"
@@ -260,6 +263,7 @@ function updateTileColumns() {
     This was Poespaspop 2023!
   </h1>
 
+  <!-- Select day -->
   <div
     class="flex justify-center gap-8 py-8 font-bold text-black md:justify-start md:gap-12 md:py-10 md:pl-20"
     :class="selectedDay.color"
@@ -275,6 +279,7 @@ function updateTileColumns() {
     </button>
   </div>
 
+  <!-- Image gallery -->
   <div class="grid grid-flow-row gap-0 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
     <template v-for="mediaFile in selectedDay.media" :key="mediaFile">
       <img
@@ -314,12 +319,14 @@ function updateTileColumns() {
     </template>
   </div>
 
+  <!-- Spotify banner -->
   <div class="max-w-full h-12 overflow-hidden flex items-center bg-c_blue">
     <span class="-translate-x-28 whitespace-nowrap text-xl font-bold uppercase text-black md:text-2xl">
       <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond />
     </span>
   </div>
 
+  <!-- Tiles -->
   <div class="grid gap-0 relative"
     :class="tileColumnsClassName"
     >
@@ -341,6 +348,7 @@ function updateTileColumns() {
     </div>
   </div>
 
+  <!-- Reverse banner -->
   <div class="max-w-full overflow-hidden flex h-12 items-center bg-c_green">
     <div class="marquee reverse">
       <span class="whitespace-nowrap text-xl font-bold uppercase text-black md:text-2xl">
@@ -350,6 +358,7 @@ function updateTileColumns() {
     </div>
   </div>
 
+  <!-- Footer -->
   <div class="px-10 py-5 md:px-20 md:py-10">
     <h2 class="uppercase text-c_yellow mb-4">More info</h2>
     <p class="mb-4">This site is a personal recap of events on <a href="https://www.pukkelpop.be" class="underline text-c_yellow hover:text-c_yellow/75 hover:no-underline">Pukkelpop 2023</a> and made just for recreational purpose.</p>
