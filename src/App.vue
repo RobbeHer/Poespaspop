@@ -118,6 +118,7 @@ function isSelectedDay(day) {
 
 function openDisplay(mediaFile) {
   selectedMedia.value = mediaFile
+  scrollToNextImage()
 }
 
 function displayPrevious() {
