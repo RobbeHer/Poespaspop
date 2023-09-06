@@ -17,6 +17,9 @@ export default {
         '17': 'repeat(17, minmax(0, 1fr))',
         '19': 'repeat(19, minmax(0, 1fr))',
       },
+      height: {
+        'dvh': '100dvh',
+      }
     },
   },
   plugins: [],

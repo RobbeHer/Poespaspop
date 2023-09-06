@@ -197,28 +197,28 @@ function updateTileColumns() {
 <template>
   <!-- Display -->
   <div v-if="selectedMedia" class="absolute z-20 h-full w-full bg-black/80 backdrop-blur-sm">
-    <div class="sticky top-0 h-screen flex justify-center items-center">
+    <div class="sticky top-0 h-dvh flex justify-center items-center touch-pinch-zoom">
       
-      <div class="absolute w-10/12 flex justify-between top-10 font-bold">
+      <div class="z-30 absolute w-10/12 flex justify-between top-[5%] md:top-[10%] font-bold">
         <a :href="'/assets/original/' + selectedMedia" download class="text-c_green">Download</a>
         <button @click="closeDisplay">Close</button>
       </div>
       
-      <div class="w-10/12 max-h-fit">
-        <img
+      <div class="w-10/12 flex justify-center">
+          <img
           v-if="fileFormat(selectedMedia) === 'jpg'"
           :src="'/assets/720p/' + fileName(selectedMedia) + '_720p.jpg'"
-          class="w-full max-h-screen object-contain"
+          class="max-h-[80dvh]"
         />
         <video
           v-if="fileFormat(selectedMedia) === 'mp4'"
           :src="'/assets/720p/' + fileName(selectedMedia) + '_720p.mp4'"
           controls
           autoplay
-          class="w-full max-h-screen object-contain"></video>
+          class="max-h-[80dvh]"></video>
       </div>
 
-      <div class="absolute w-10/12 flex justify-between bottom-10 font-bold">
+      <div class="z-30 absolute w-10/12 flex justify-between bottom-[5%] md:bottom-[10%] font-bold">
         <button @click="displayPrevious">Previous</button>
         <button @click="displayNext">Next</button>
       </div>
@@ -281,7 +281,7 @@ function updateTileColumns() {
   </div>
 
   <!-- Image gallery -->
-  <div class="grid grid-flow-row gap-0 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+  <div class="grid grid-flow-row gap-0 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 cursor-pointer">
     <template v-for="mediaFile in selectedDay.media" :key="mediaFile">
       <img
         v-if="fileFormat(mediaFile) === 'jpg'"
@@ -291,9 +291,10 @@ function updateTileColumns() {
         class="w-full"
         :id="mediaFile"
       />
-      <div v-if="fileFormat(mediaFile) === 'mp4'" class="relative">
+      <div v-if="fileFormat(mediaFile) === 'mp4'"
+        @click="openDisplay(mediaFile)"
+        class="relative">
         <img
-          @click="openDisplay(mediaFile)"
           :src="
             '/assets/preview/video/' + fileName(mediaFile) + '_preview.jpg'
           "
