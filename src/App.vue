@@ -142,7 +142,11 @@ function scrollToNextImage() {
     if (day.media.includes(selectedMedia.value)) setSelectedDay(day)
   })
 
-  setTimeout(() => document.getElementById(selectedMedia.value).scrollIntoView({block: 'center', behavior: "smooth"}), 200)
+  setTimeout(() => scrollToSelectedImage(), 200)
+}
+
+function scrollToSelectedImage() {
+  document.getElementById(selectedMedia.value)?.scrollIntoView({block: 'center', behavior: "smooth"})
 }
 
 function closeDisplay() {
@@ -180,6 +184,7 @@ const tileColumnsClassName = ref('grid-cols-9')
 updateTileColumns()
 
 window.addEventListener("resize", () => {
+  if (selectedMedia.value !== null) scrollToSelectedImage()
   updateTileColumns()
 })
 
@@ -228,7 +233,7 @@ function updateTileColumns() {
 
   <!-- Nav -->
   <div class="lg:absolute z-10 w-full top-0 font-bold uppercase pl-5 py-2 lg:pl-10 lg:py-4 flex items-center">
-    <div class="flex gap-3 items-center origin-left scale-[.7] md:scale-[.8] lg:scale-100">
+    <div class="flex gap-3 items-center origin-left scale-[.7] md:scale-[.8] lg:scale-100 whitespace-nowrap">
       <h1 class="text-3xl lg:text-5xl lg:font-extrabold">Poespaspop</h1>
       <div class="flex flex-col text-xs lg:text-sm leading-3">
         <div class="w-fill flex justify-between"><span class="text-baselg:font-extrabold">Hasselt</span> <span class="font-light lg:font-medium">Kiewit</span> <span class="lg:font-extrabold">BE</span></div>
@@ -260,7 +265,7 @@ function updateTileColumns() {
     </div>
   </div>
 
-  <h1 class="py-8 md:py-10 pt-14 flex justify-center">
+  <h1 class="py-8 md:py-10 pt-14 text-center">
     This was Poespaspop 2023!
   </h1>
 

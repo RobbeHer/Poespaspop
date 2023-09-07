@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.text-wrap-balance {
+  text-wrap: balance;
+  max-inline-size: 25ch;
+}
+
 body {
   font-family: "Montserrat", sans-serif;
   @apply bg-black text-lg font-light text-white md:text-xl;
