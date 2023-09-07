@@ -205,12 +205,12 @@ function updateTileColumns() {
     <div class="sticky top-0 h-dvh flex justify-center items-center touch-pinch-zoom">
       
       <div class="z-30 absolute w-10/12 flex justify-between top-[5%] md:top-[10%] font-bold">
-        <a :href="'/assets/original/' + selectedMedia" download class="text-c_green">Download</a>
-        <button @click="closeDisplay">Close</button>
+        <a :href="'/assets/original/' + selectedMedia" download class="text-c_green drop-shadow">Download</a>
+        <button @click="closeDisplay" class="drop-shadow">Close</button>
       </div>
       
       <div class="w-10/12 flex justify-center">
-          <img
+        <img
           v-if="fileFormat(selectedMedia) === 'jpg'"
           :src="'/assets/720p/' + fileName(selectedMedia) + '_720p.jpg'"
           class="max-h-[80dvh]"
@@ -224,8 +224,8 @@ function updateTileColumns() {
       </div>
 
       <div class="z-30 absolute w-10/12 flex justify-between bottom-[5%] md:bottom-[10%] font-bold">
-        <button @click="displayPrevious">Previous</button>
-        <button @click="displayNext">Next</button>
+        <button @click="displayPrevious" class="drop-shadow">Previous</button>
+        <button @click="displayNext" class="drop-shadow">Next</button>
       </div>
 
     </div>
@@ -293,7 +293,7 @@ function updateTileColumns() {
         @click="openDisplay(mediaFile)"
         :src="'/assets/preview/' + fileName(mediaFile) + '_preview.jpg'"
         :title="mediaFile"
-        class="w-full"
+        class="w-full aspect-square"
         :id="mediaFile"
       />
       <div v-if="fileFormat(mediaFile) === 'mp4'"
@@ -304,7 +304,7 @@ function updateTileColumns() {
             '/assets/preview/video/' + fileName(mediaFile) + '_preview.jpg'
           "
           :title="mediaFile"
-          class="w-full"
+          class="w-full aspect-square"
           :id="mediaFile"
         />
         <div class="absolute left-0 top-0 bg-c_purple p-1.5">
