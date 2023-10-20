@@ -259,7 +259,13 @@ function updateTileColumns() {
       <div class="marquee">
         <span class="whitespace-nowrap text-xl font-bold uppercase text-black md:text-2xl">
           <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik />
+          Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments
           <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik />
+          Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments
+          <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik />
+          Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments
+          <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik />
+          Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments <Mozaik /> Our best moments
         </span>
       </div>
     </div>
@@ -292,7 +298,6 @@ function updateTileColumns() {
         v-if="fileFormat(mediaFile) === 'jpg'"
         @click="openDisplay(mediaFile)"
         :src="'/assets/preview/' + fileName(mediaFile) + '_preview.jpg'"
-        :title="mediaFile"
         class="w-full aspect-square"
         :id="mediaFile"
       />
@@ -303,7 +308,6 @@ function updateTileColumns() {
           :src="
             '/assets/preview/video/' + fileName(mediaFile) + '_preview.jpg'
           "
-          :title="mediaFile"
           class="w-full aspect-square"
           :id="mediaFile"
         />
@@ -329,7 +333,10 @@ function updateTileColumns() {
   <!-- Spotify banner -->
   <div class="max-w-full h-12 overflow-hidden flex items-center bg-c_blue">
     <span class="-translate-x-28 whitespace-nowrap text-xl font-bold uppercase text-black md:text-2xl">
-      <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond />
+      <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond />
+      Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist 
+      <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond />
+      Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist <Diamond /> Spotify playlist 
     </span>
   </div>
 
@@ -359,6 +366,12 @@ function updateTileColumns() {
   <div class="max-w-full overflow-hidden flex h-12 items-center bg-c_green">
     <div class="marquee reverse">
       <span class="whitespace-nowrap text-xl font-bold uppercase text-black md:text-2xl">
+        <SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine />
+        <SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine />
+        <SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine />
+        <SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine />
+        <SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine />
+        <SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine />
         <SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine />
         <SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine /><SquiglyLine />
       </span>
