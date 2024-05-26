@@ -28,4 +28,4 @@ coverage
 *.sw?
 
 /src/assets/*
-/public/assets/*
+/public/assets/original/*
